@@ -43,10 +43,10 @@ class Board:
                 self.cells[pos] = [rect, False]
 
         self.random_but = tk.Button(self.root, width=self.N, text='RANDOM', command=self.brandom)
-        self.random_but.pack(fill=tk.Y)
+        self.random_but.pack(fill=tk.X)
 
         self.run_but = tk.Button(self.root, width=self.N, text='RUN', command=self.run)
-        self.run_but.pack(fill=tk.Y)
+        self.run_but.pack(expand=1, fill=tk.X)
 
         self.root.mainloop()
 
@@ -187,15 +187,12 @@ def create_board(pos):
 def new_game():
     main = tk.Tk()
     main.title('LIFE')
-
     slab = tk.Label(main, text="Game of Life \n ")
     slab.pack()
-
     bsize = tk.IntVar()
     bsize.set(20)
     tsize = tk.IntVar()
     tsize.set(3)
-
     blab = tk.Label(main, text='BOARD SIZE')
     blab.pack()
     bslider = tk.Scale(main, orient='horiz', from_=10, to=100, variable=bsize)
@@ -204,12 +201,9 @@ def new_game():
     tlab.pack()
     tslider = tk.Scale(main, orient='horiz', from_=1, to=5, variable=tsize)
     tslider.pack()
-
     pos = [bsize, tsize]
-
-    start_but = tk.Button(main, text='START', command=lambda pos=pos: create_board(pos))
+    start_but = tk.Button(main, text='START', command=lambda poss=pos: create_board(poss))
     start_but.pack(side=tk.BOTTOM)
-
     main.mainloop()
 
 
